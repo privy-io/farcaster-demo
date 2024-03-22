@@ -1,8 +1,13 @@
 # Privy Farcaster Demo
 
-This is a simple demo using Privy with support for login and write with Farcaster.
+This is a simple demo using Privy to login and write with Farcaster.
 
-## Installation
+## Documentation
+
+Integrate Farcaster login with Privy by following [this guide](https://docs.privy.io/guide/react/recipes/misc/farcaster).
+To enable your users to write to their Farcaster account, please refer to the [Privy Farcaster Write documentation](https://docs.privy.io/guide/react/recipes/misc/farcaster-writes).
+
+## Run this demo locally
 
 ```sh
 # Clone repo
