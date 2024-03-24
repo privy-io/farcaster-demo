@@ -11,6 +11,12 @@ import Head from 'next/head';
 import useSWRMutation from 'swr/mutation';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import slaycasterLogo from './images/slaycasterlogo.png';
+import Image from 'next/image';
+import Link from 'next/link';
+
+
+
 
 export default function FarcasterPage() {
   const [isHashVisible, setIsHashVisible] = useState(false);
@@ -78,11 +84,11 @@ export default function FarcasterPage() {
 
   useEffect(() => {
     if (farcasterAccount) setTimeout(() => trigger(), 2000);
-  }, [!!farcasterAccount]);
+  }, [farcasterAccount, trigger]);
 
   const formattedCasts = data?.result.casts.map((cast: any) => {
     return (
-      <div className="mt-4 mx-auto max-w-2xl p-4 bg-white shadow rounded-lg relative">
+      <div key={cast.hash} className="mt-4 mx-auto max-w-2xl p-4 bg-white shadow rounded-lg relative">
       {/* Cast Content and Info Icon */}
       <div className="flex justify-between items-start mb-4">
         {/* Cast Text */}
@@ -156,7 +162,15 @@ export default function FarcasterPage() {
       <main className="flex min-h-screen flex-col bg-privy-light-blue px-4 py-6 sm:px-20 sm:py-10">
         <ToastContainer />
         <div className="flex flex-row justify-between">
-        <img src="https://slaycaster.4everland.store/slaycasterlogo.png" alt="Slaycaster Logo" className="w-40 sm:w-40 md:w-48" />
+        <Link href="/">
+          <Image
+            src="/images/slaycasterlogo.png" // Path relative to the public directory
+            alt="Slaycaster Logo"
+            width={160} // Width of the image in pixels
+            height={40} // Height of the image in pixels
+            className="w-40 sm:w-40 md:w-48"
+          />
+        </Link>
           <div className="flex flex-row gap-4">
             <button
               onClick={logout}
