@@ -2,7 +2,6 @@ import Blobby from '@/components/svg/blobby'
 import { useLogin, usePrivy } from '@privy-io/react-auth'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import slaycasterLogo from './images/slaycasterlogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
