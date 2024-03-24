@@ -1,5 +1,6 @@
 import {useRouter} from 'next/router';
 import React, {useEffect, useState} from 'react';
+import { HeartIcon, ArrowPathIcon, InformationCircleIcon } from '@heroicons/react/24/outline';
 import {
   useLogout,
   usePrivy,
@@ -12,6 +13,12 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function FarcasterPage() {
+  const [isHashVisible, setIsHashVisible] = useState(false);
+
+  const toggleHashVisibility = () => {
+    setIsHashVisible(!isHashVisible);
+  };
+
   const router = useRouter();
 
   const [castInput, setCastInput] = useState('');
@@ -75,42 +82,68 @@ export default function FarcasterPage() {
 
   const formattedCasts = data?.result.casts.map((cast: any) => {
     return (
-      <div className="mt-4 p-4 bg-slate-100 border rounded-md" key={cast.hash}>
-        <p className="my-2 text-sm text-gray-600">Hash: {cast.hash}</p>
-        <p className="my-2 text-sm text-gray-600">Text: {cast.text}</p>
-        <p className="my-2 text-sm text-gray-600">Likes: {cast.reactions.count}</p>
-        <p className="my-2 text-sm text-gray-600">Recasts: {cast.recasts.count}</p>
+      <div className="mt-4 mx-auto max-w-2xl p-4 bg-white shadow rounded-lg relative">
+      {/* Cast Content and Info Icon */}
+      <div className="flex justify-between items-start mb-4">
+        {/* Cast Text */}
+        <p className="text-sm text-gray-700 flex-1">{cast.text}</p>
+
+        {/* Toggle Icon */}
         <button
-          className="rounded-md bg-violet-600 py-2 px-4 text-sm text-white hover:bg-violet-700"
-          onClick={async () => {
-            const {hash} = await removeCast({castHash: cast.hash});
-            toast(`Removed cast. Message hash: ${hash}`);
-            setTimeout(() => trigger(), 2000);
-          }}
+          onClick={toggleHashVisibility}
+          type="button"
+          className="ml-4 flex-shrink-0"
         >
-          Remove Cast
-        </button>
-        <button
-          className="rounded-md bg-violet-600 py-2 px-4 ml-4 text-sm text-white hover:bg-violet-700"
-          onClick={async () => {
-            const {hash} = await likeCast({castHash: cast.hash, castAuthorFid: cast.author.fid});
-            toast(`Liked cast. Message hash: ${hash}`);
-            setTimeout(() => trigger(), 2000);
-          }}
-        >
-          Like
-        </button>
-        <button
-          className="rounded-md bg-violet-600 py-2 px-4 ml-4 text-sm text-white hover:bg-violet-700"
-          onClick={async () => {
-            const {hash} = await recastCast({castHash: cast.hash, castAuthorFid: cast.author.fid});
-            toast(`Recasted cast. Message hash: ${hash}`);
-            setTimeout(() => trigger(), 2000);
-          }}
-        >
-          Recast
+          <InformationCircleIcon className="h-6 w-6 text-gray-500 hover:text-gray-700" />
         </button>
       </div>
+
+      {/* Optionally Displayed Hash */}
+      {isHashVisible && (
+        <div className="text-left">
+          <span className="text-xs text-gray-500">Cast Hash is {cast.hash}</span>
+        </div>
+      )}
+  
+  {/* Cast Actions */}
+  <div className="flex justify-between items-center mt-4">
+    <div className="flex space-x-2">
+      <button
+        className="bg-purple-500 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+        onClick={async () => {
+          // Add your logic to remove cast
+        }}
+      >
+        Remove Cast
+      </button>
+      <button
+        className="bg-purple-500 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+        onClick={async () => {
+          // Add your logic to like cast
+        }}
+      >
+        Like
+      </button>
+      <button
+        className="bg-purple-500 text-white px-3 py-1 rounded-md text-sm hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+        onClick={async () => {
+          // Add your logic to recast
+        }}
+      >
+        Recast
+      </button>
+    </div>
+
+    {/* Cast Statistics */}
+    <div className="flex items-center">
+      <HeartIcon className="h-6 w-6 text-gray-700" />
+      <span className="text-sm text-gray-700 mx-2">{cast.reactions.count}</span>
+      <ArrowPathIcon className="h-6 w-6 text-gray-700" />
+      <span className="text-sm text-gray-700 mx-2">{cast.recasts.count}</span>
+    </div>
+  </div>
+</div>
+
     );
   });
 
@@ -133,12 +166,11 @@ export default function FarcasterPage() {
             </button>
           </div>
         </div>
-        <p className="mt-6 mb-2 text-sm font-bold uppercase text-gray-600">Farcaster User</p>
-        <div className="bg-slate-100 rounded-md p-4 border">
+        
+        <div className="p-4">
           <p className="my-2 text-sm text-gray-600">
-            Display Name: {farcasterAccount?.displayName}
+            Welcome {farcasterAccount?.displayName} @{farcasterAccount?.username}
           </p>
-          <p className="my-2 text-sm text-gray-600">Username: {farcasterAccount?.username}</p>
           <p className="my-2 text-sm text-gray-600">
             Farcaster Signer: {signerPublicKey ?? 'NONE'}
           </p>
@@ -154,11 +186,12 @@ export default function FarcasterPage() {
             </button>
           )}
         </div>
+
         <p className="mt-6 mb-2 text-sm font-bold uppercase text-gray-600">Submit a cast</p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 p-2">
           <input
             placeholder="My cast text!"
-            className="w-full rounded-md"
+            className="w-full rounded-md p-2"
             type="text"
             value={castInput}
             onChange={(e) => setCastInput(e.target.value)}
@@ -178,29 +211,20 @@ export default function FarcasterPage() {
             Submit
           </button>
         </div>
+
         <p className="mt-6 mb-2 text-sm font-bold uppercase text-gray-600">My Casts</p>
         <div className="gap-4">{!isMutating && formattedCasts}</div>
-        <p className="mt-6 mb-2 text-sm font-bold uppercase text-gray-600">Follow Privy</p>
+        <p className="mt-6 mb-2 text-sm font-bold uppercase text-gray-600">Follow saltï</p>
         <div className="flex flex-wrap gap-4">
           <button
-            className="rounded-md bg-violet-600 py-2 px-4 text-sm text-white hover:bg-violet-700"
+            className="rounded-md bg-green-600 py-2 px-4 text-sm text-white hover:bg-green"
             onClick={async () => {
-              const {hash} = await followUser({fid: 188926});
+              const {hash} = await followUser({fid: 5124});
               toast(`Followed user. Message hash: ${hash}`);
               setTimeout(() => trigger(), 2000);
             }}
           >
             Follow
-          </button>
-          <button
-            className="rounded-md bg-violet-600 py-2 px-4 text-sm text-white hover:bg-violet-700"
-            onClick={async () => {
-              const {hash} = await unfollowUser({fid: 188926});
-              toast(`Unfollowed user. Message hash: ${hash}`);
-              setTimeout(() => trigger(), 2000);
-            }}
-          >
-            Unfollow
           </button>
         </div>
       </main>
