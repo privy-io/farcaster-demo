@@ -123,7 +123,7 @@ export default function FarcasterPage() {
       <main className="flex min-h-screen flex-col bg-privy-light-blue px-4 py-6 sm:px-20 sm:py-10">
         <ToastContainer />
         <div className="flex flex-row justify-between">
-          <h1 className="text-2xl font-semibold">Farcaster Demo</h1>
+        <img src="https://slaycaster.4everland.store/slaycasterlogo.png" alt="Slaycaster Logo" className="w-40 sm:w-40 md:w-48" />
           <div className="flex flex-row gap-4">
             <button
               onClick={logout}
