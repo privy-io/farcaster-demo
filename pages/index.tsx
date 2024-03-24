@@ -23,7 +23,7 @@ const Index = () => {
 	return (
 		<>
 			<Head>
-				<title>Privy Farcaster Demo</title>
+				<title>slay⚡caster</title>
 			</Head>
 			<main>
 				<div className='flex h-screen w-screen flex-col items-center justify-center'>

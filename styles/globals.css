@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap');
 
 body {
 	@apply min-h-screen select-none bg-zinc-50 text-zinc-900 antialiased p-safe dark:bg-zinc-900 dark:text-zinc-50;
@@ -8,4 +9,21 @@ body {
 	-webkit-overflow-scrolling: touch;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
+
+	font-family: 'Syne', sans-serif;
+	/* Other styles */
+  }
+  
+  h1, h2 {
+	font-weight: 800; /* Extra bold for h1 and h2 */
+  }
+  
+  button, .button-class {
+	font-weight: 700; /* Bold for buttons */
+  }
+  
+  /* You can also apply normal font weight to specific elements if needed */
+  p, .text-class {
+	font-weight: 400; /* Normal weight for text */
+	
 }

@@ -117,7 +117,7 @@ export default function FarcasterPage() {
   return (
     <>
       <Head>
-        <title>Privy Farcaster Demo</title>
+        <title>slay⚡caster</title>
       </Head>
 
       <main className="flex min-h-screen flex-col bg-privy-light-blue px-4 py-6 sm:px-20 sm:py-10">

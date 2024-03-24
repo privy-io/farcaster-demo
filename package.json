@@ -10,7 +10,7 @@
 		"format": "eslint \"components/**/*.{ts,tsx,js,jsx}\" \"pages/**/*.{ts,tsx,js,jsx}\" --fix && prettier --write \"components/**/*.{ts,tsx,js,jsx}\" \"pages/**/*.{ts,tsx,js,jsx}\""
 	},
 	"dependencies": {
-		"@heroicons/react": "^2.0.18",
+		"@heroicons/react": "^2.1.3",
 		"@privy-io/react-auth": "1.59.6-beta-20240322214908",
 		"@typescript-eslint/eslint-plugin": "^6.7.0",
 		"@typescript-eslint/parser": "^6.7.0",
