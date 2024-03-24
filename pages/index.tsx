@@ -27,7 +27,7 @@ const Index = () => {
 			</Head>
 			<main>
 				<div className='flex h-screen w-screen flex-col items-center justify-center'>
-				    <img src="https://slaycaster.4everland.store/slaycasterlogo.png" alt="Slaycaster Logo" className="w-40 sm:w-40 md:w-48" />
+				    <img src="https://static.wixstatic.com/media/707696_fd9b320bb38b48eea06468dfa4a85711~mv2.png" alt="Slaycaster Logo" className="w-40 sm:w-40 md:w-48" />
 					<h1 className='my-4 text-md text-gray-800'>
 						Login with Farcaster using Privy and start casting.
 					</h1>
