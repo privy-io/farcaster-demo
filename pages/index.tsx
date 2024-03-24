@@ -30,6 +30,7 @@ const Index = () => {
 			</Head>
 			<main>
 				<div className='flex h-screen w-screen flex-col items-center justify-center'>
+<<<<<<< HEAD
 					<Image
 						src="/images/slaycaster-suare.png" // Path relative to the public directory
 						alt="Slaycaster Logo"
@@ -37,6 +38,9 @@ const Index = () => {
 						height={40} // Height of the image in pixels
 						className="w-40 sm:w-40 md:w-48"
 					/>
+=======
+				    <img src="https://slaycaster.4everland.store/slaycasterlogo.png" alt="Slaycaster Logo" className="w-40 sm:w-40 md:w-48" />
+>>>>>>> parent of c334876 (improved logo)
 					<h1 className='my-4 text-md text-gray-800'>
 						Login with Farcaster using Privy and start casting.
 					</h1>
