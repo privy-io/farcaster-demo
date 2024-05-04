@@ -36,7 +36,7 @@ export default function FarcasterPage() {
 	const hubClient = new HubRestAPIClient({
 		hubUrl: 'https://hub-api.neynar.com',
 		axiosInstance: axios.create({
-			headers: { api_key: 'NEYNAR_PRIVY' },
+			headers: { api_key: 'NEYNAR_PRIVY_DEMO' },
 		}),
 	})
 
