@@ -1,5 +1,7 @@
 # Privy Farcaster Demo
 
+> **This repository is archived.** For up-to-date examples, please visit [github.com/privy-io/examples](https://github.com/privy-io/examples).
+
 This is a simple demo using Privy to login and write with Farcaster.
 
 ## Documentation
